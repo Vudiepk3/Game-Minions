@@ -1,4 +1,4 @@
-import pygame
+import pygame, sys
 from random import randint
 from pygame import mixer
 import random 
@@ -10,8 +10,7 @@ pygame.display.set_caption('Minions')
 running = True
 GREEN = (0,200,0)
 RED = (255,0,0)
-FPS = 60 
-
+FPS = 60  
 WIDTH,HEIGHT=1200,600
 clock = pygame.time.Clock()
 i=0 
@@ -85,7 +84,7 @@ moon_y = randint(60,100)
 
 bird_drop_velocity=0
 GRAVITY=0.45   
-TUBE_VELOCITY = 3.5
+TUBE_VELOCITY = 3.25
 
 score = 0
 banana = 0 
@@ -113,7 +112,7 @@ pausing= False
 background_image = pygame.image.load("image/bk.png")
 background_image = pygame.transform.scale(background_image,(WIDTH, HEIGHT))
 
-bird_image = pygame.image.load("image/icon.png")
+bird_image = pygame.image.load("image/icon1.png")
 bird_image = pygame.transform.scale(bird_image,(BIRD_WIDTH, BIRD_HEIGHT))
 
 tree_image = pygame.image.load("image/tree1.png")
@@ -155,9 +154,9 @@ tube5v_image = pygame.transform.scale(tube1_image,(TUBE_WIDTH,530-tube5_height-T
 tube6_image = pygame.transform.scale(tube1_image,(TUBE_WIDTH, tube6_height))
 tube6v_image = pygame.transform.scale(tube1_image,(TUBE_WIDTH,530-tube6_height-TUBE_GAP-tube6_y))
 #Update image
-meme1_list = ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png','9.png','10.png']
+meme1_list = ['1.png']
 random1_file = random.choice(meme1_list)
-meme2_list = ['11.png','12.png','13.png','14.png','15.png','16.png','17.png','18.png','19.png','20.png']
+meme2_list = ['11.png']
 random2_file = random.choice(meme2_list)
 
 #Sound
@@ -326,17 +325,7 @@ while running:
        banana+=1
        BANANA_x3= TUBE_X+200
        BANANA_y3=randint(100,500)
-       
-     if banana == 5  :
-       screen.blit(random1_file,(600,0))
-     if banana % 15== 0 and banana !=0   :
-       screen.blit(random2_file,(600,0))
-     if score >=10 and score <= 15: 
-       screen.blit(random1_file,(800,0)) 
-     if score >=25 and score <= 28: 
-       screen.blit(random2_file,(800,0)) 
-     if score % 30 ==0  and score != 0:
-        screen.blit(random1_file,(800,0))
+
      #Check Collision( kiểm tra va chạm )
      for tube in [tube1_rect, tube2_rect, tube3_rect, tube1_rect_inv, tube2_rect_inv, tube3_rect_inv,
                   tube4_rect,tube5_rect,tube5_rect_inv,tube6_rect,tube6_rect_inv,
@@ -363,7 +352,7 @@ while running:
                if pausing:
                  pygame.mixer.Sound.stop(music1) 
                  bird_y=400
-                 TUBE_VELOCITY = 3.5
+                 TUBE_VELOCITY = 3
                  tube1_x = 1000
                  tube2_x = 1300
                  tube3_x = 1600
